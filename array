@@ -1,0 +1,27 @@
+def largestpeak(arr,n):
+    i=1
+    currentlen=0
+    largestlen=0
+    while(i<n-1):
+        ispeak = arr[i]>arr[i-1] and arr[i]>arr[i+1]
+        if not ispeak:
+            i+=1
+            continue
+        else:
+            leftindex=i-2
+            while(leftindex>=0 and arr[leftindex]<arr[leftindex+1]):
+                leftindex-=1
+            rightindex=i+2
+            while(rightindex<len(arr) and arr[rightindex]<arr[rightindex-1]):
+                rightindex=rightindex+1
+            currentlen=rightindex-leftindex-1
+            largestlen=max(largestlen,currentlen) 
+            i=rightindex
+    return largestlen
+if __name__ == '__main__':
+    arr=[1,2,3,3,4,0,10,6,5,-1,-3,2,3]
+    n=len(arr)
+    ans=largestpeak(arr,n)
+    print(ans)            
+            
+            
